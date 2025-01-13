@@ -8,13 +8,13 @@ bootstrap-commons:
 
 
 # Run pre-commit install. Useful as a mixin for other recipes.
-[group("precommit")]
+[group("commons")]
 bootstrap-precommit:
     pre-commit install
 
 
 # Run pre-commit 'hook' against all files (default all hooks)
-[group("precommit")]
+[group("commons")]
 lint hook="":
     pre-commit run {{ hook }} --all-files
 
@@ -23,7 +23,7 @@ lint hook="":
 GREP_TARGET := "\\\\[gone\\\\]"
 
 # Prunes local branches deleted from remote.
-[group("git")]
+[group("commons")]
 prune-dead-branches:
     @echo "{{ GREEN }}>> Removing dead branches...{{ NORMAL }}"
     @git fetch --prune
@@ -31,7 +31,7 @@ prune-dead-branches:
 
 
 # Remove all local tags and re-fetch tags from the remote. Tags removed from remote will now be gone.
-[group("git")]
+[group("commons")]
 prune-tags:
     @echo "{{ GREEN }}>> Cleaning up tags not present on remote...{{ NORMAL }}"
     git tag -l | xargs git tag -d
@@ -39,12 +39,12 @@ prune-tags:
 
 
 # Run all git "prune-" commands above
-[group("git")]
+[group("commons")]
 prune: prune-dead-branches prune-tags
 
 
 # Diff this project against its latest release
-[group("releases")]
+[group("commons")]
 @release-diff:
     git fetch --tags --prune
     LATEST_TAG=`gh release list \
