@@ -1,5 +1,7 @@
-## Common Just recipes used across my projects.
-## See README for usage details.
+# Common Just recipes used across my projects.
+# Usage: see https://github.com/griceturrble/common-project-files
+# Just docs: https://just.systems/man/en/
+
 
 # Setup all common tooling
 [group("commons")]

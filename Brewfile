@@ -1,5 +1,6 @@
 # Starter Brewfile for most projects
-# To use, call `brew bundle install`
+# Installation: `brew bundle install`
+# Usage: see https://github.com/griceturrble/common-project-files
 
 tap "homebrew/bundle"
 tap "homebrew/services"
