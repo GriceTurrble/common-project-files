@@ -17,6 +17,7 @@ help:
     @just --list --unsorted --justfile {{ source_file() }} 
 
 # Pull latest common justfile recipes to local repo
+[group("commons")]
 sync-justfile:
     curl https://raw.githubusercontent.com/griceturrble/justfiles/main/Justfile > common.just
 ```

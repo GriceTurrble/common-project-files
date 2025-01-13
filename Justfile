@@ -6,9 +6,12 @@
 bootstrap-commons:
     just bootstrap-precommit
 
+
+# Run pre-commit install. Useful as a mixin for other recipes.
 [group("precommit")]
 bootstrap-precommit:
     pre-commit install
+
 
 # Run pre-commit 'hook' against all files (default all hooks)
 [group("precommit")]
