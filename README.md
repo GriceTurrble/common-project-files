@@ -1,22 +1,24 @@
 # common project files
 My common files, workflows, and recipes for working on projects
 
-## Usage
+## Starter Brewfile
 
-> [!note]
-> Refer to [Just docs](https://just.systems/man/en/remote-justfiles.html#remote-justfiles)
-> for details on using remote Justfiles.
-
-First and foremost, you should copy down [Brewfile](Brewfile),
-if you don't already have one;
-then install the bundle into the repo
+Copy down the common [Brewfile](Brewfile),
+then install the bundle into the repo:
 
 ```shell
 curl https://raw.githubusercontent.com/griceturrble/common-project-files/main/Brewfile > Brewfile
 brew bundle install
 ```
 
-Next, include the following in the project Justfile:
+## Common Justfile
+
+> [!note]
+> Refer to [Just docs](https://just.systems/man/en/remote-justfiles.html#remote-justfiles)
+> for details on using remote Justfiles.
+
+Within your project's main `Justfile`,
+include the following:
 
 ```just
 ### START COMMON ###
@@ -40,9 +42,15 @@ bootstrap:
 ```
 
 You can then call `just bootstrap` to call down the common [Justfile](Justfile)
-into the project,
-as well as bootstrap the common tooling
+into the project, which is saved as `common.just`.
+This will also call `bootstrap-commons` automatically,
+setting up some common tooling
 (such as installing `pre-commit` hooks in the repo).
+
+> [!note]
+> You should add `common.just` to `.gitignore` to avoid having it tracked.
+> Just re-sync it with `just sync-justfile` (or `just bootstrap`)
+> at any time to copy it again.
 
 From there, all targets of that common file should be available natively.
 
@@ -74,11 +82,6 @@ bootstrap:
 
 ...etc. At the end of the process, ideally *one call* to `just bootstrap`
 *should* get the project ready for you to start working on it.
-
-### gitignore the common file
-
-This method will add a `common.just` file into your local repo.
-You should add this file to `.gitignore` to avoid having it tracked.
 
 ## Available recipes
 
