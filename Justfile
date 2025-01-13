@@ -42,14 +42,14 @@ prune: prune-dead-branches prune-tags
 
 # Diff this project against its latest release
 [group("releases")]
-@release-diff tag="":
-    git fetch --prune
+@release-diff:
+    git fetch --tags --prune
     LATEST_TAG=`gh release list \
         --exclude-drafts \
         --exclude-pre-releases \
         --limit 1 \
-        --json name \
-        --jq ".[0].name"` \
+        --json tagName \
+        --jq ".[0].tagName"` \
     && git log \
         --pretty=format:"* %Cgreen%h%Creset %s" \
         ${LATEST_TAG}..HEAD
