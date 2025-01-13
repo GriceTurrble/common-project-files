@@ -43,6 +43,7 @@ You can then call `just bootstrap` to call down the common [Justfile](Justfile)
 into the project,
 as well as bootstrap the common tooling
 (such as installing `pre-commit` hooks in the repo).
+
 From there, all targets of that common file should be available natively.
 
 ### bootstrap pattern
