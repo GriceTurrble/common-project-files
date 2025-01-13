@@ -7,7 +7,16 @@ My common justfile recipes which I use for imports across projects
 > Refer to [Just docs](https://just.systems/man/en/remote-justfiles.html#remote-justfiles)
 > for details on using remote Justfiles.
 
-Include the following in the project Justfile:
+First and foremost, you should copy down [Brewfile](Brewfile),
+if you don't already have one;
+then install the bundle into the repo
+
+```shell
+curl https://raw.githubusercontent.com/griceturrble/justfiles/main/Brewfile > Brewfile
+brew bundle install
+```
+
+Next, include the following in the project Justfile:
 
 ```just
 ### START COMMON ###
@@ -23,11 +32,47 @@ sync-justfile:
     curl -H 'Cache-Control: no-cache, no-store' \
         https://raw.githubusercontent.com/griceturrble/justfiles/main/Justfile > common.just
 ### END COMMON ###
+
+# bootstrap the dev environment
+bootstrap:
+    just sync-justfile
+    just bootstrap-commons
 ```
 
-You can then call `just sync-justfile` to call down the common [Justfile](Justfile)
-into the project.
+You can then call `just bootstrap` to call down the common [Justfile](Justfile)
+into the project,
+as well as bootstrap the common tooling
+(such as installing `pre-commit` hooks in the repo).
 From there, all targets of that common file should be available natively.
+
+### bootstrap pattern
+
+Note the above sample includes:
+
+```just
+# bootstrap the dev environment
+bootstrap:
+    just sync-justfile
+    just bootstrap-commons
+```
+
+The call to `sync-justfile` will install the common module.
+The very next call to `bootstrap-commons` is able to use the new `common.just` immediately,
+which is quite handy. 🙂
+
+You should add whatever other calls you need into the `bootstrap` target
+in order to get the whole environment for the target repo up and running:
+
+```just
+# bootstrap the dev environment
+bootstrap:
+    just sync-justfile
+    just bootstrap-commons
+    uv sync --all-groups
+```
+
+...etc. At the end of the process, ideally *one call* to `just bootstrap`
+*should* get the project ready for you to start working on it.
 
 ### gitignore the common file
 
