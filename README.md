@@ -19,7 +19,8 @@ help:
 # Pull latest common justfile recipes to local repo
 [group("commons")]
 sync-justfile:
-    curl https://raw.githubusercontent.com/griceturrble/justfiles/main/Justfile > common.just
+    curl -H 'Cache-Control: no-cache, no-store' \
+        https://raw.githubusercontent.com/griceturrble/justfiles/main/Justfile > common.just
 ```
 
 You can then call `just sync-justfile` to call down the common [Justfile](Justfile)
