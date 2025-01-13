@@ -10,17 +10,19 @@ My common justfile recipes which I use for imports across projects
 Include the following in the project Justfile:
 
 ```just
+### START COMMON ###
 import? 'common.just'
 
 # Show these help docs
 help:
-    @just --list --unsorted --justfile {{ source_file() }} 
+    @just --list --unsorted --justfile {{ source_file() }}
 
 # Pull latest common justfile recipes to local repo
 [group("commons")]
 sync-justfile:
     curl -H 'Cache-Control: no-cache, no-store' \
         https://raw.githubusercontent.com/griceturrble/justfiles/main/Justfile > common.just
+### END COMMON ###
 ```
 
 You can then call `just sync-justfile` to call down the common [Justfile](Justfile)
