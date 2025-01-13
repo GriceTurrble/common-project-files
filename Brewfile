@@ -8,6 +8,3 @@ brew "gh"
 brew "jq"
 brew "just"
 brew "pre-commit"
-
-cask "font-hack"
-cask "font-commit-mono"
