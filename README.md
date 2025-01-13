@@ -1,5 +1,5 @@
-# justfiles
-My common justfile recipes which I use for imports across projects
+# common project files
+My common files, workflows, and recipes for working on projects
 
 ## Usage
 
