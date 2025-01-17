@@ -30,18 +30,18 @@ help:
 
 # Pull latest common justfile recipes to local repo
 [group("commons")]
-sync-justfile:
+sync-commons:
     curl -H 'Cache-Control: no-cache, no-store' \
-        https://raw.githubusercontent.com/griceturrble/common-project-files/main/Justfile > common.just
+        https://raw.githubusercontent.com/griceturrble/common-project-files/main/common.just > common.just
 ### END COMMON ###
 
 # bootstrap the dev environment
 bootstrap:
-    just sync-justfile
+    just sync-commons
     just bootstrap-commons
 ```
 
-You can then call `just bootstrap` to call down the common [Justfile](Justfile)
+You can then call `just bootstrap` to call down the [common Justfile](common.just)
 into the project, which is saved as `common.just`.
 This will also call `bootstrap-commons` automatically,
 setting up some common tooling
@@ -49,7 +49,7 @@ setting up some common tooling
 
 > [!note]
 > You should add `common.just` to `.gitignore` to avoid having it tracked.
-> Just re-sync it with `just sync-justfile` (or `just bootstrap`)
+> Just re-sync it with `just sync-commons` (or `just bootstrap`)
 > at any time to copy it again.
 
 From there, all targets of that common file should be available natively.
@@ -61,11 +61,11 @@ Note the above sample includes:
 ```just
 # bootstrap the dev environment
 bootstrap:
-    just sync-justfile
+    just sync-commons
     just bootstrap-commons
 ```
 
-The call to `sync-justfile` will install the common module.
+The call to `sync-commons` will install the common module.
 The very next call to `bootstrap-commons` is able to use the new `common.just` immediately,
 which is quite handy. 🙂
 
@@ -75,7 +75,7 @@ in order to get the whole environment for the target repo up and running:
 ```just
 # bootstrap the dev environment
 bootstrap:
-    just sync-justfile
+    just sync-commons
     just bootstrap-commons
     uv sync --all-groups
 ```
