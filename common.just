@@ -60,3 +60,20 @@ prune: prune-dead-branches prune-tags
         ${LATEST_TAG}..HEAD
 
 alias reldiff := release-diff
+
+# Show list of current issues in this repo
+[group("commons")]
+issues:
+    GH_PAGER= gh issue list
+
+
+# Show list of current issues in this repo
+[group("commons")]
+project-issues:
+    gh project item-list 2 --owner "@me"
+
+
+# Show list of current issues in this repo
+[group("commons")]
+project:
+    gh project view 2 --owner "@me" --web
