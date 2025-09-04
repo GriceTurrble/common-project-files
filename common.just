@@ -80,7 +80,8 @@ project:
 
 GH_SECRETS_FILE := "~/.gh_common_secrets"
 
-# Update common secrets. Depends on a local file, ~/.gh_common_secrets
+# Update common secrets for GH Actions and Dependabot. Secrets must be defined in a local file, `~/.gh_common_secrets`
 [group("commons")]
 update-common-secrets:
     gh secret set -f {{GH_SECRETS_FILE}}
+    gh secret set --app dependabot -f {{GH_SECRETS_FILE}}
