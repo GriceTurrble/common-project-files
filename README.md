@@ -183,3 +183,29 @@ Further, the `abbreviated-hash`
 creates an automatic link to the commit on GitHub
 when the line is copied to any GitHub text field
 (such as release notes or an issue comment).
+
+### `issues`
+
+Calls `gh issue list` with no `GH_PAGER` set,
+which displays all issues in stdout for further viewing in the terminal
+without a pager (like `less`) hiding that output later.
+
+### `project-issues`
+
+Lists all current issues in my cross-repo tracking project.
+
+### `project`
+
+Opens my cross-repo tracking project in a web browser.
+
+### `update-common-secrets`
+
+I use some common secrets across repos,
+mainly PATs with small scopes such as one for adding items to the cross-repo project.
+When these secrets need to be updated,
+add them in a local `~/.gh_common_secrets` file,
+then run this command.
+
+This calls `gh secret set -f` targeting that file,
+so the current repo will set those secrets.
+Common workflows that depend on that file will pick it up after that.
