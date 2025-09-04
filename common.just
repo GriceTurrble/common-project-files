@@ -77,3 +77,10 @@ project-issues:
 [group("commons")]
 project:
     gh project view 2 --owner "@me" --web
+
+GH_SECRETS_FILE := "~/.gh_common_secrets"
+
+# Update common secrets. Depends on a local file, ~/.gh_common_secrets
+[group("commons")]
+update-common-secrets:
+    gh secret set -f {{GH_SECRETS_FILE}}
